@@ -1,0 +1,833 @@
+Ejercicio 1
+// 1. Insertar el producto P008 con insertOne()
+db.productos.insertOne({
+    sku: "P008",
+    nombre: "Bocina Bluetooth",
+    categoria: "Audio",
+    precio: 890,
+    stock: 25,
+    etiquetas: ["audio", "bluetooth"],
+    activo: true
+})
+
+{
+  acknowledged: true,
+  insertedId: ObjectId('6abd8f30cce633bd1981c020')
+}
+Ejercicio 3
+// 3. Mostrar todos los documentos almacenados en la coleccion productos.
+db.productos.find()
+
+{
+  _id: ObjectId('6a988ff8e09bcf09698f2245'),
+  sku: 'P001',
+  nombre: 'Laptop Pro',
+  categoria: 'Computo',
+  precio: 18500,
+  stock: 12
+}
+
+{
+  _id: ObjectId('6a989008e09bcf09698f2246'),
+  sku: 'P002',
+  nombre: 'Mouse inalambrico',
+  categoria: 'Accesorios',
+  precio: 450,
+  stock: 80,
+  color: 'negro',
+  activo: true
+}
+
+{
+  _id: ObjectId('6a989018e09bcf09698f2247'),
+  sku: 'P003',
+  nombre: 'Audifonos BT',
+  categoria: 'Audio',
+  precio: 1250,
+  stock: 35,
+  bluetooth: true,
+  etiquetas: [
+    'audio',
+    'movilidad'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a989022e09bcf09698f2248'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+{
+  _id: ObjectId('6a98904be09bcf09698f2249'),
+  sku: 'P005',
+  nombre: 'Teclado mecanico',
+  categoria: 'Accesorios',
+  precio: 1600,
+  stock: 27,
+  etiquetas: [
+    'mecanico',
+    'gaming'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a98904be09bcf09698f224a'),
+  sku: 'P006',
+  nombre: 'Webcam HD',
+  categoria: 'Accesorios',
+  precio: 980,
+  stock: 40,
+  etiquetas: [
+    'video',
+    'usb'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a98904be09bcf09698f224b'),
+  sku: 'P007',
+  nombre: 'SSD 1TB',
+  categoria: 'Almacenamiento',
+  precio: 1450,
+  stock: 30,
+  etiquetas: [
+    'ssd',
+    'almacenamiento'
+  ]
+}
+
+{
+  _id: ObjectId('6a98906ce09bcf09698f224c'),
+  sku: 'P008',
+  nombre: 'Bocina Bluetooth',
+  categoria: 'Audio',
+  precio: 890,
+  stock: 25,
+  etiquetas: [
+    'audio',
+    'bluetooth'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f2258'),
+  sku: 'P020',
+  nombre: 'Laptop Gaming',
+  categoria: 'Computo',
+  precio: 24500,
+  stock: 8,
+  etiquetas: [
+    'laptop',
+    'gaming'
+  ],
+  activo: true,
+  especificaciones: {
+    ram: '16GB',
+    gpu: 'RTX 4060'
+  }
+}
+
+Ejercicio 4
+// 4. Consultar unicamente el producto cuyo sku sea "P003" e identificar los campos que contiene.
+db.productos.findOne({ sku: "P003" })
+{
+  _id: ObjectId('6a989018e09bcf09698f2247'),
+  sku: 'P003',
+  nombre: 'Audifonos BT',
+  categoria: 'Audio',
+  precio: 1250,
+  stock: 35,
+  bluetooth: true,
+  etiquetas: [
+    'audio',
+    'movilidad'
+  ],
+  activo: true
+}
+
+Ejercicio 5
+// 5. Consultar todos los productos pertenecientes a la categoria "Computo".
+db.productos.find({ categoria: "Computo" })
+
+{
+  _id: ObjectId('6a988ff8e09bcf09698f2245'),
+  sku: 'P001',
+  nombre: 'Laptop Pro',
+  categoria: 'Computo',
+  precio: 18500,
+  stock: 12
+}
+
+{
+  _id: ObjectId('6a989022e09bcf09698f2248'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f224d'),
+  sku: 'P009',
+  nombre: 'Tablet 10',
+  categoria: 'Computo',
+  precio: 5200,
+  stock: 15,
+  etiquetas: [
+    'tablet',
+    'movilidad'
+  ],
+  activo: true,
+  especificaciones: {
+    pantalla: '10 pulgadas',
+    almacenamiento: '128GB'
+  }
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f2250'),
+  sku: 'P012',
+  nombre: 'Laptop Basica',
+  categoria: 'Computo',
+  precio: 12500,
+  stock: 20,
+  etiquetas: [
+    'laptop',
+    'oficina'
+  ],
+  activo: true,
+  especificaciones: {
+    ram: '8GB',
+    almacenamiento: '512GB'
+  }
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f2254'),
+  sku: 'P016',
+  nombre: 'Monitor 24',
+  categoria: 'Computo',
+  precio: 3900,
+  stock: 16,
+  etiquetas: [
+    'monitor',
+    'oficina'
+  ],
+  activo: true,
+  especificaciones: {
+    resolucion: '1920x1080',
+    hz: 75
+  }
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f2258'),
+  sku: 'P020',
+  nombre: 'Laptop Gaming',
+  categoria: 'Computo',
+  precio: 24500,
+  stock: 8,
+  etiquetas: [
+    'laptop',
+    'gaming'
+  ],
+  activo: true,
+  especificaciones: {
+    ram: '16GB',
+    gpu: 'RTX 4060'
+  }
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f225c'),
+  sku: 'P024',
+  nombre: 'Monitor 32',
+  categoria: 'Computo',
+  precio: 7800,
+  stock: 12,
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ],
+  activo: true,
+  especificaciones: {
+    resolucion: '3840x2160',
+    hz: 60
+  }
+}
+.
+.
+.
+{
+  _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+Ejercicio 6
+// 6. Consultar todos los productos pertenecientes a la categoria "Accesorios".
+db.productos.find({ categoria: "Accesorios" })
+
+{
+  _id: ObjectId('6a989008e09bcf09698f2246'),
+  sku: 'P002',
+  nombre: 'Mouse inalambrico',
+  categoria: 'Accesorios',
+  precio: 450,
+  stock: 80,
+  color: 'negro',
+  activo: true
+}
+
+
+{
+  _id: ObjectId('6a98904be09bcf09698f2249'),
+  sku: 'P005',
+  nombre: 'Teclado mecanico',
+  categoria: 'Accesorios',
+  precio: 1600,
+  stock: 27,
+  etiquetas: [
+    'mecanico',
+    'gaming'
+  ],
+  activo: true
+}
+
+.
+.
+.
+{
+  _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+  sku: 'P006',
+  nombre: 'Webcam HD',
+  categoria: 'Accesorios',
+  precio: 980,
+  stock: 40,
+  etiquetas: [
+    'video',
+    'usb'
+  ],
+  activo: true
+}
+Ejercicio 7
+// 7. Consultar todos los productos cuyo campo activo tenga el valor true.
+db.productos.find({ activo: true })
+
+{
+  _id: ObjectId('6a989008e09bcf09698f2246'),
+  sku: 'P002',
+  nombre: 'Mouse inalambrico',
+  categoria: 'Accesorios',
+  precio: 450,
+  stock: 80,
+  color: 'negro',
+  activo: true
+}
+
+{
+  _id: ObjectId('6a989018e09bcf09698f2247'),
+  sku: 'P003',
+  nombre: 'Audifonos BT',
+  categoria: 'Audio',
+  precio: 1250,
+  stock: 35,
+  bluetooth: true,
+  etiquetas: [
+    'audio',
+    'movilidad'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a98904be09bcf09698f2249'),
+  sku: 'P005',
+  nombre: 'Teclado mecanico',
+  categoria: 'Accesorios',
+  precio: 1600,
+  stock: 27,
+  etiquetas: [
+    'mecanico',
+    'gaming'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a98904be09bcf09698f224a'),
+  sku: 'P006',
+  nombre: 'Webcam HD',
+  categoria: 'Accesorios',
+  precio: 980,
+  stock: 40,
+  etiquetas: [
+    'video',
+    'usb'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a98906ce09bcf09698f224c'),
+  sku: 'P008',
+  nombre: 'Bocina Bluetooth',
+  categoria: 'Audio',
+  precio: 890,
+  stock: 25,
+  etiquetas: [
+    'audio',
+    'bluetooth'
+  ],
+  activo: true
+}
+
+.
+.
+.
+{
+  _id: ObjectId('6a989084e09bcf09698f225b'),
+  sku: 'P023',
+  nombre: 'Tarjeta microSD 128GB',
+  categoria: 'Almacenamiento',
+  precio: 420,
+  stock: 75,
+  etiquetas: [
+    'memoria',
+    'almacenamiento'
+  ],
+  activo: true
+
+
+Ejercicio 8
+// 8. Consultar todos los productos que contengan la etiqueta "gaming".
+db.productos.find({ etiquetas: "gaming" }
+
+{
+  _id: ObjectId('6a989022e09bcf09698f2248'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+{
+  _id: ObjectId('6a98904be09bcf09698f2249'),
+  sku: 'P005',
+  nombre: 'Teclado mecanico',
+  categoria: 'Accesorios',
+  precio: 1600,
+  stock: 27,
+  etiquetas: [
+    'mecanico',
+    'gaming'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f2251'),
+  sku: 'P013',
+  nombre: 'Mouse Gamer',
+  categoria: 'Accesorios',
+  precio: 780,
+  stock: 45,
+  etiquetas: [
+    'mouse',
+    'gaming'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f2253'),
+  sku: 'P015',
+  nombre: 'Audifonos Gamer',
+  categoria: 'Audio',
+  precio: 1750,
+  stock: 28,
+  etiquetas: [
+    'audio',
+    'gaming'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f2258'),
+  sku: 'P020',
+  nombre: 'Laptop Gaming',
+  categoria: 'Computo',
+  precio: 24500,
+  stock: 8,
+  etiquetas: [
+    'laptop',
+    'gaming'
+  ],
+  activo: true,
+  especificaciones: {
+    ram: '16GB',
+    gpu: 'RTX 4060'
+  }
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f225c'),
+  sku: 'P024',
+  nombre: 'Monitor 32',
+  categoria: 'Computo',
+  precio: 7800,
+  stock: 12,
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ],
+  activo: true,
+  especificaciones: {
+    resolucion: '3840x2160',
+    hz: 60
+  }
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f226c'),
+  sku: 'P040',
+  nombre: 'Monitor Curvo 27',
+  categoria: 'Computo',
+  precio: 7100,
+  stock: 14,
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ],
+  activo: true,
+  especificaciones: {
+    resolucion: '3440x1440',
+    hz: 165
+  }
+}
+
+
+  _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+{
+  _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+  sku: 'P005',
+  nombre: 'Teclado mecanico',
+  categoria: 'Accesorios',
+  precio: 1600,
+  stock: 27,
+  etiquetas: [
+    'mecanico',
+    'gaming'
+  ],
+  activo: true
+}
+
+Ejercicio 9
+// 9. Consultar todos los productos que contengan la etiqueta "usb".
+db.productos.find({ etiquetas: "usb" })
+
+{
+  _id: ObjectId('6a98904be09bcf09698f224a'),
+  sku: 'P006',
+  nombre: 'Webcam HD',
+  categoria: 'Accesorios',
+  precio: 980,
+  stock: 40,
+  etiquetas: [
+    'video',
+    'usb'
+  ],
+  activo: true
+}
+
+.
+.
+.
+
+{
+  _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+  sku: 'P006',
+  nombre: 'Webcam HD',
+  categoria: 'Accesorios',
+  precio: 980,
+  stock: 40,
+  etiquetas: [
+    'video',
+    'usb'
+  ],
+  activo: true
+}
+
+
+Ejercicio 10
+/ 10. Consultar el producto cuyo campo interno especificaciones.hz tenga el valor 144.
+db.productos.find({ "especificaciones.hz": 144 })
+
+{
+  _id: ObjectId('6a989022e09bcf09698f2248'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+{
+  _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+
+Ejercicio 11
+// 11. Consultar el producto cuyo campo interno especificaciones.resolucion tenga el valor "2560x1440".
+db.productos.find({ "especificaciones.resolucion": "2560x1440" })
+
+{
+  _id: ObjectId('6a989022e09bcf09698f2248'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+{
+  _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+  sku: 'P004',
+  nombre: 'Monitor 27',
+  categoria: 'Computo',
+  precio: 6200,
+  stock: 18,
+  especificaciones: {
+    resolucion: '2560x1440',
+    hz: 144
+  },
+  etiquetas: [
+    'monitor',
+    'gaming'
+  ]
+}
+
+
+Ejercicio 12
+// 12. Contar el numero total de documentos almacenados en la coleccion productos.
+// Resultado esperado: 50 documentos.
+db.productos.countDocuments()
+60
+
+Ejercicio 13
+// 13. Contar cuantos productos pertenecen a la categoria "Accesorios".
+// Resultado esperado: 14 productos.
+db.productos.countDocuments({ categoria: "Accesorios" })
+17
+
+Ejercicio 14
+// 14. Consultar el producto "P008".
+// Identificar cuales de sus campos contienen texto, numeros, un booleano y un array.
+db.productos.findOne({ sku: "P008" })
+
+{
+  _id: ObjectId('6a98906ce09bcf09698f224c'),
+  sku: 'P008',
+  nombre: 'Bocina Bluetooth',
+  categoria: 'Audio',
+  precio: 890,
+  stock: 25,
+  etiquetas: [
+    'audio',
+    'bluetooth'
+  ],
+  activo: true
+}
+
+
+Ejercicio 15
+// 15. Consultar el producto "P009" e identificar su array etiquetas y su subdocumento especificaciones.
+// Posteriormente, consultar el valor del campo interno especificaciones.almacenamiento mediante notacion de punto.
+db.productos.findOne({ sku: "P009" })
+
+{
+  _id: ObjectId('6a989084e09bcf09698f224d'),
+  sku: 'P009',
+  nombre: 'Tablet 10',
+  categoria: 'Computo',
+  precio: 5200,
+  stock: 15,
+  etiquetas: [
+    'tablet',
+    'movilidad'
+  ],
+  activo: true,
+  especificaciones: {
+    pantalla: '10 pulgadas',
+    almacenamiento: '128GB'
+  }
+}
+
+db.productos.findOne(
+    { sku: "P009" },
+    { "especificaciones.almacenamiento": 1 }
+)
+
+{
+  _id: ObjectId('6a989084e09bcf09698f224d'),
+  especificaciones: {
+    almacenamiento: '128GB'
+  }
+}
+
+Ejercicio 16
+// 16. Contar cuantos productos pertenecen a la categoria "Almacenamiento".
+// Resultado esperado: 11 productos.
+db.productos.countDocuments({ categoria: "Almacenamiento" })
+
+12
+
+
+Ejercicio 17
+// 17. Consultar todos los productos que contengan la etiqueta "movilidad".
+// Identificar que categorias de productos aparecen en los resultados.
+db.productos.find({ etiquetas: "movilidad" })
+
+{
+  _id: ObjectId('6a989018e09bcf09698f2247'),
+  sku: 'P003',
+  nombre: 'Audifonos BT',
+  categoria: 'Audio',
+  precio: 1250,
+  stock: 35,
+  bluetooth: true,
+  etiquetas: [
+    'audio',
+    'movilidad'
+  ],
+  activo: true
+}
+
+{
+  _id: ObjectId('6a989084e09bcf09698f224d'),
+  sku: 'P009',
+  nombre: 'Tablet 10',
+  categoria: 'Computo',
+  precio: 5200,
+  stock: 15,
+  etiquetas: [
+    'tablet',
+    'movilidad'
+  ],
+  activo: true,
+  especificaciones: {
+    pantalla: '10 pulgadas',
+    almacenamiento: '128GB'
+  }
+}
+
+.
+.
+.
+{
+  _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+  sku: 'P003',
+  nombre: 'Audifonos BT',
+  categoria: 'Audio',
+  precio: 1250,
+  stock: 35,
+  bluetooth: true,
+  etiquetas: [
+    'audio',
+    'movilidad'
+  ],
+  activo: true
+}
+
+// NOTA: EN ESTE NO SE MUESTRAN LOS COMANDOS PARA INSTALAR LA BD COMO SE INDICAN EN LAS GUIAS, POR LO QUE ME SALTARÉ ESOS PASOS
+// PARA SOLO MOSTRAR LOS EJERCICIOS DE LA PRACTICA 
