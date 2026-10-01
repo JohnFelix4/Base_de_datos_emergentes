@@ -1,0 +1,1632 @@
+﻿
+// Seleccionar la base de datos
+db = db.getSiblingDB("ventas_online")
+ventas_online
+
+// 1. Cambiar el precio del producto P009
+
+// Consultar el producto antes de modificarlo
+db.productos.find({sku: "P009"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 5200,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  }
+]
+
+// Cambiar el precio a 4990
+db.productos.updateOne(
+    {sku: "P009"},
+    {$set: {precio: 4990}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+// Consultar el producto despues de modificarlo
+db.productos.find({sku: "P009"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  }
+]
+
+// 2. Incrementar el stock del producto P010
+
+// Consultar el producto antes de modificarlo
+db.productos.find({sku: "P010"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 100,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  }
+]
+
+// Incrementar el stock en 10 unidades
+db.productos.updateOne(
+    {sku: "P010"},
+    {$inc: {stock: 10}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+// Consultar el producto despues de modificarlo
+db.productos.find({sku: "P010"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  }
+]
+
+// 3. Disminuir el stock del producto P011
+
+// Consultar el producto antes de modificarlo
+db.productos.find({sku: "P011"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 10,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// Disminuir el stock en 3 unidades
+db.productos.updateOne(
+    {sku: "P011"},
+    {$inc: {stock: -3}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+// Consultar el producto despues de modificarlo
+db.productos.find({sku: "P011"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 4. Modificar precio y stock del producto P005
+
+// Consultar el producto antes de modificarlo
+db.productos.find({sku: "P005"})
+[
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 27,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 27,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  }
+]
+
+// Cambiar el precio y aumentar el stock en 8 unidades
+db.productos.updateOne(
+    {sku: "P005"},
+    {
+        $set: {precio: 1550},
+        $inc: {stock: 8}
+    }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+// Consultar el producto despues de modificarlo
+db.productos.find({sku: "P005"})
+[
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 35,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 27,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  }
+]
+
+// 5. Agregar la etiqueta recomendado al producto P005
+
+// Consultar el producto antes de modificarlo
+db.productos.find({sku: "P005"})
+[
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 35,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 27,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  }
+]
+
+// Agregar la etiqueta recomendado
+db.productos.updateOne(
+    {sku: "P005"},
+    {$addToSet: {etiquetas: "recomendado"}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+// Consultar el producto despues de modificarlo
+db.productos.find({sku: "P005"})
+[
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 35,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 27,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  }
+]
+
+// Ejecutar nuevamente la misma actualizacion
+db.productos.updateOne(
+    {sku: "P005"},
+    {$addToSet: {etiquetas: "recomendado"}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+// Consultar nuevamente el producto
+db.productos.find({sku: "P005"})
+[
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 35,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 27,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  }
+]
+
+// $addToSet evita agregar nuevamente un valor que ya existe en el array
+
+// 6. Incrementar el stock de los productos de categoria Accesorios
+
+// Consultar los productos antes de modificarlos
+db.productos.find({categoria: "Accesorios"})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 85,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 35,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 40,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 45,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 33,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 24,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 60,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 38,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 46,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 52,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 120,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 27,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 34,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 80,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 27,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 40,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  }
+]
+
+// Incrementar el stock en 10 unidades
+db.productos.updateMany(
+    {categoria: "Accesorios"},
+    {$inc: {stock: 10}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 17,
+  modifiedCount: 17,
+  upsertedCount: 0
+}
+
+// Consultar los productos despues de modificarlos
+db.productos.find({categoria: "Accesorios"})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  }
+]
+
+// 7. Agregar la etiqueta catalogo a los productos de categoria Computo
+
+// Consultar los productos antes de modificarlos
+db.productos.find({categoria: "Computo"})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming'
+    ]
+  }
+]
+
+// Agregar la etiqueta catalogo
+db.productos.updateMany(
+    {categoria: "Computo"},
+    {$addToSet: {etiquetas: "catalogo"}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 15,
+  modifiedCount: 15,
+  upsertedCount: 0
+}
+
+// Consultar los productos despues de modificarlos
+db.productos.find({categoria: "Computo"})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  }
+]
+
+// 8. Agregar y eliminar el campo garantia_meses del producto P009
+
+// Consultar el producto antes de modificarlo
+db.productos.find({sku: "P009"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  }
+]
+
+// Agregar el campo garantia_meses
+db.productos.updateOne(
+    {sku: "P009"},
+    {$set: {garantia_meses: 12}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+// Comprobar que el campo fue agregado
+db.productos.find({sku: "P009"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    },
+    garantia_meses: 12
+  }
+]
+
+// Eliminar el campo garantia_meses
+db.productos.updateOne(
+    {sku: "P009"},
+    {$unset: {garantia_meses: ""}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+// Comprobar que el campo fue eliminado
+db.productos.find({sku: "P009"})
+[
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  }
+]
+
+// 9. Crear y eliminar el producto temporal TEMP02
+
+// Crear el producto temporal
+db.productos.insertOne({
+    sku: "TEMP02",
+    precio: 200,
+    stock: 5
+})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6abdc848c3e78e7afeaa22ef')
+}
+
+// Consultar el producto temporal
+db.productos.find({sku: "TEMP02"})
+[
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22ef'),
+    sku: 'TEMP02',
+    precio: 200,
+    stock: 5
+  }
+]
+
+// Eliminar el producto mediante su sku
+db.productos.deleteOne({sku: "TEMP02"})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+// Comprobar que el producto ya no existe
+db.productos.find({sku: "TEMP02"})
+[]
+
+// 10. Crear TEMP03 y TEMP04 y eliminar solamente TEMP03
+
+// Crear los dos productos temporales
+db.productos.insertMany([
+    {
+        sku: "TEMP03",
+        precio: 200,
+        stock: 5
+    },
+    {
+        sku: "TEMP04",
+        precio: 300,
+        stock: 10
+    }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6abdc848c3e78e7afeaa22f0'),
+    '1': ObjectId('6abdc848c3e78e7afeaa22f1')
+  }
+}
+
+// Consultar ambos productos
+db.productos.find({
+    sku: {$in: ["TEMP03", "TEMP04"]}
+})
+[
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f0'),
+    sku: 'TEMP03',
+    precio: 200,
+    stock: 5
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// Eliminar solamente TEMP03
+db.productos.deleteOne({sku: "TEMP03"})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+// Comprobar que TEMP04 continua almacenado
+db.productos.find({
+    sku: {$in: ["TEMP03", "TEMP04"]}
+})
+[
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 11. Crear y eliminar tres documentos temporales
+
+// Crear tres documentos con categoria Eliminar
+db.productos.insertMany([
+    {
+        sku: "ELIM01",
+        categoria: "Eliminar",
+        precio: 100,
+        stock: 1
+    },
+    {
+        sku: "ELIM02",
+        categoria: "Eliminar",
+        precio: 200,
+        stock: 2
+    },
+    {
+        sku: "ELIM03",
+        categoria: "Eliminar",
+        precio: 300,
+        stock: 3
+    }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6abdc848c3e78e7afeaa22f2'),
+    '1': ObjectId('6abdc848c3e78e7afeaa22f3'),
+    '2': ObjectId('6abdc848c3e78e7afeaa22f4')
+  }
+}
+
+// Consultar los documentos antes de eliminarlos
+db.productos.find({categoria: "Eliminar"})
+[
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f2'),
+    sku: 'ELIM01',
+    categoria: 'Eliminar',
+    precio: 100,
+    stock: 1
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f3'),
+    sku: 'ELIM02',
+    categoria: 'Eliminar',
+    precio: 200,
+    stock: 2
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f4'),
+    sku: 'ELIM03',
+    categoria: 'Eliminar',
+    precio: 300,
+    stock: 3
+  }
+]
+
+// Eliminar todos los documentos de la categoria Eliminar
+db.productos.deleteMany({categoria: "Eliminar"})
+{
+  acknowledged: true,
+  deletedCount: 3
+}
+
+// Comprobar que fueron eliminados
+db.productos.find({categoria: "Eliminar"})
+[]
+
+// 12. Importancia de consultar antes de modificar o eliminar
+
+// Es recomendable ejecutar primero find() utilizando el mismo filtro
+// porque permite comprobar exactamente que documentos seran afectados.
+// De esta forma se puede verificar el filtro antes de ejecutar una
+// operacion que modifique o elimine documentos.
+
+// 13. Diferencia entre matchedCount y modifiedCount
+
+// matchedCount indica cuantos documentos coincidieron con el filtro.
+// modifiedCount indica cuantos documentos realmente fueron modificados.
+// Un documento puede coincidir con el filtro pero no necesitar cambios,
+// por lo que matchedCount puede ser mayor que modifiedCount.
+
+// 14. Ventaja de utilizar $addToSet
+
+// $addToSet agrega un elemento a un array solamente si ese elemento
+// no existe previamente.
+// Esto evita valores duplicados dentro del array.
+// Por eso es mas adecuado que $push cuando se desea evitar duplicados.
+
+
