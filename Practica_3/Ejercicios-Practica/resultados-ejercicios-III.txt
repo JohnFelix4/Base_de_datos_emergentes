@@ -1,0 +1,10294 @@
+﻿
+// Poner en uso nuestra base de datos
+db = db.getSiblingDB("ventas_online")
+ventas_online
+
+// Contar los documentos
+db.productos.countDocuments()
+61
+
+// 1. Operadores de comparacion
+
+// 1.1 Buscar productos cuyo precio sea exactamente igual a 1450
+db.productos.find({
+    precio: { $eq: 1450 }
+})
+[
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  }
+]
+
+db.productos.find({
+    precio: 1450
+})
+[
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  }
+]
+
+// 1.2 Buscar productos cuya categoria sea diferente de "Audio"
+db.productos.find({
+    categoria: { $ne: "Audio" }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 1.3 Buscar productos cuyo precio sea mayor a $1,000
+db.productos.find({
+    precio: { $gt: 1000 }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  }
+]
+
+// 1.4 Buscar productos cuyo precio sea mayor o igual a $1,000
+db.productos.find({
+    precio: { $gte: 1000 }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  }
+]
+
+// 1.5 Buscar productos cuyo stock sea menor a 20
+db.productos.find({
+    stock: { $lt: 20 }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 1.6 Buscar productos cuyo precio sea menor o igual a $1,500
+db.productos.find({
+    precio: { $lte: 1500 }
+})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 1.7 Buscar productos cuyo precio este entre $1,000 y $10,000
+db.productos.find({
+    precio: {
+        $gte: 1000,
+        $lte: 10000
+    }
+})
+[
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  }
+]
+
+// 1.8 Buscar productos cuyo stock este entre 15 y 40 unidades, incluyendo ambos valores
+db.productos.find({
+    stock: {
+        $gte: 15,
+        $lte: 40
+    }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 1.9 Buscar productos cuyo precio sea mayor a $500 pero menor a $2,000
+db.productos.find({
+    precio: {
+        $gt: 500,
+        $lt: 2000
+    }
+})
+[
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 1.10 Buscar productos pertenecientes a las categorias "Audio" o "Computo"
+db.productos.find({
+    categoria: {
+        $in: ["Audio", "Computo"]
+    }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 1.11 Buscar productos que no pertenezcan a las categorias "Audio" ni "Computo"
+db.productos.find({
+    categoria: {
+        $nin: ["Audio", "Computo"]
+    }
+})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 2. Operadores logicos
+
+// 2.1 Buscar productos cuyo precio sea menor a $5,000 y cuyo stock sea mayor a 20 unidades
+db.productos.find({
+    $and: [
+        { precio: { $lt: 5000 } },
+        { stock: { $gt: 20 } }
+    ]
+})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 2.2 Buscar productos que pertenezcan a la categoria "Audio" o cuyo stock sea menor a 15 unidades
+db.productos.find({
+    $or: [
+        { categoria: "Audio" },
+        { stock: { $lt: 15 } }
+    ]
+})
+[
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 2.3 Buscar productos que no pertenezcan a la categoria "Audio" ni tengan un precio mayor a $5,000
+db.productos.find({
+    $nor: [
+        { categoria: "Audio" },
+        { precio: { $gt: 5000 } }
+    ]
+})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 2.4 Buscar productos cuyo precio no sea mayor a $5,000
+db.productos.find({
+    precio: {
+        $not: { $gt: 5000 }
+    }
+})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 3. Operadores de existencia $exists
+
+// 3.1 Buscar productos que tengan el campo especificaciones
+db.productos.find({
+    especificaciones: { $exists: true }
+})
+[
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  }
+]
+
+// 3.2 Buscar productos que no tengan el campo especificaciones
+db.productos.find({
+    especificaciones: { $exists: false }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 3.3 Buscar productos que tengan definido el campo bluetooth
+db.productos.find({
+    bluetooth: { $exists: true }
+})
+[
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 4. Operadores sobre arrays
+
+// 4.1 Buscar productos cuyo array etiquetas contenga el valor "gaming"
+db.productos.find({
+    etiquetas: "gaming"
+})
+[
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  }
+]
+
+// 4.2 Buscar productos cuyo array etiquetas contenga simultaneamente los valores "audio" y "promocion"
+db.productos.find({
+    etiquetas: {
+        $all: ["audio", "promocion"]
+    }
+})
+[
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 4.3 Buscar productos cuyo array etiquetas contenga exactamente dos elementos
+db.productos.find({
+    etiquetas: { $size: 2 }
+})
+[
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  }
+]
+
+// 4.4 Buscar productos que tengan el campo etiquetas
+db.productos.find({
+    etiquetas: { $exists: true }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224b'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224e'),
+    sku: 'P010',
+    nombre: 'Memoria USB 64GB',
+    categoria: 'Almacenamiento',
+    precio: 320,
+    stock: 110,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2252'),
+    sku: 'P014',
+    nombre: 'Disco Duro 2TB',
+    categoria: 'Almacenamiento',
+    precio: 1650,
+    stock: 22,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2256'),
+    sku: 'P018',
+    nombre: 'SSD 500GB',
+    categoria: 'Almacenamiento',
+    precio: 890,
+    stock: 50,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225b'),
+    sku: 'P023',
+    nombre: 'Tarjeta microSD 128GB',
+    categoria: 'Almacenamiento',
+    precio: 420,
+    stock: 75,
+    etiquetas: [
+      'memoria',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225f'),
+    sku: 'P027',
+    nombre: 'SSD 2TB',
+    categoria: 'Almacenamiento',
+    precio: 2750,
+    stock: 14,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2263'),
+    sku: 'P031',
+    nombre: 'Disco Externo 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1350,
+    stock: 29,
+    etiquetas: [
+      'hdd',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2267'),
+    sku: 'P035',
+    nombre: 'Memoria USB 128GB',
+    categoria: 'Almacenamiento',
+    precio: 490,
+    stock: 90,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226b'),
+    sku: 'P039',
+    nombre: 'SSD 256GB',
+    categoria: 'Almacenamiento',
+    precio: 650,
+    stock: 65,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226f'),
+    sku: 'P043',
+    nombre: 'Disco Duro 4TB',
+    categoria: 'Almacenamiento',
+    precio: 2850,
+    stock: 12,
+    etiquetas: [
+      'hdd',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2273'),
+    sku: 'P047',
+    nombre: 'Memoria USB 256GB',
+    categoria: 'Almacenamiento',
+    precio: 760,
+    stock: 58,
+    etiquetas: [
+      'usb',
+      'almacenamiento'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec7'),
+    sku: 'P007',
+    nombre: 'SSD 1TB',
+    categoria: 'Almacenamiento',
+    precio: 1450,
+    stock: 30,
+    etiquetas: [
+      'ssd',
+      'almacenamiento'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 4.5 Buscar productos que no tengan el campo etiquetas
+db.productos.find({
+    etiquetas: { $exists: false }
+})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abdc848c3e78e7afeaa22f1'),
+    sku: 'TEMP04',
+    precio: 300,
+    stock: 10
+  }
+]
+
+// 5. Condiciones combinadas
+
+// 5.1 Buscar productos de categoria "Audio" cuyo precio sea mayor a $1,000
+db.productos.find({
+    categoria: "Audio",
+    precio: { $gt: 1000 }
+})
+[
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2265'),
+    sku: 'P033',
+    nombre: 'Barra de Sonido',
+    categoria: 'Audio',
+    precio: 3200,
+    stock: 13,
+    etiquetas: [
+      'audio',
+      'hogar',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2275'),
+    sku: 'P049',
+    nombre: 'Interfaz de Audio',
+    categoria: 'Audio',
+    precio: 2650,
+    stock: 15,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 5.2 Buscar productos de categoria "Computo" cuyo stock sea menor a 20
+db.productos.find({
+    categoria: "Computo",
+    stock: { $lt: 20 }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224d'),
+    sku: 'P009',
+    nombre: 'Tablet 10',
+    categoria: 'Computo',
+    precio: 4990,
+    stock: 15,
+    etiquetas: [
+      'tablet',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      pantalla: '10 pulgadas',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2258'),
+    sku: 'P020',
+    nombre: 'Laptop Gaming',
+    categoria: 'Computo',
+    precio: 24500,
+    stock: 8,
+    etiquetas: [
+      'laptop',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      gpu: 'RTX 4060'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2260'),
+    sku: 'P028',
+    nombre: 'Mini PC',
+    categoria: 'Computo',
+    precio: 9800,
+    stock: 11,
+    etiquetas: [
+      'computo',
+      'compacto',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2268'),
+    sku: 'P036',
+    nombre: 'All in One 24',
+    categoria: 'Computo',
+    precio: 15800,
+    stock: 9,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      pantalla: '24 pulgadas'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2270'),
+    sku: 'P044',
+    nombre: 'Laptop Ultraligera',
+    categoria: 'Computo',
+    precio: 19800,
+    stock: 7,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2274'),
+    sku: 'P048',
+    nombre: 'PC Escritorio',
+    categoria: 'Computo',
+    precio: 14200,
+    stock: 10,
+    etiquetas: [
+      'computo',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '16GB',
+      almacenamiento: '1TB'
+    }
+  },
+  {
+    _id: ObjectId('6abd8b36b9f1686677db8ec1'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 18500,
+    stock: 12,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  }
+]
+
+// 5.3 Buscar productos de categoria "Audio" o "Accesorios" cuyo precio sea menor a $1,500
+db.productos.find({
+    categoria: { $in: ["Audio", "Accesorios"] },
+    precio: { $lt: 1500 }
+})
+[
+  {
+    _id: ObjectId('6a989008e09bcf09698f2246'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 425,
+    stock: 95,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f224a'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a98906ce09bcf09698f224c'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f224f'),
+    sku: 'P011',
+    nombre: 'Microfono USB',
+    categoria: 'Audio',
+    precio: 1350,
+    stock: 7,
+    etiquetas: [
+      'audio',
+      'usb',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2255'),
+    sku: 'P017',
+    nombre: 'Teclado Inalambrico',
+    categoria: 'Accesorios',
+    precio: 950,
+    stock: 43,
+    etiquetas: [
+      'teclado',
+      'inalambrico'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2257'),
+    sku: 'P019',
+    nombre: 'Camara Web Full HD',
+    categoria: 'Accesorios',
+    precio: 1250,
+    stock: 34,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2259'),
+    sku: 'P021',
+    nombre: 'Bocina Portatil',
+    categoria: 'Audio',
+    precio: 690,
+    stock: 42,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225a'),
+    sku: 'P022',
+    nombre: 'Hub USB-C',
+    categoria: 'Accesorios',
+    precio: 620,
+    stock: 70,
+    etiquetas: [
+      'usb',
+      'conectividad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225d'),
+    sku: 'P025',
+    nombre: 'Audifonos Cableados',
+    categoria: 'Audio',
+    precio: 350,
+    stock: 55,
+    etiquetas: [
+      'audio',
+      'cableado',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225e'),
+    sku: 'P026',
+    nombre: 'Base para Laptop',
+    categoria: 'Accesorios',
+    precio: 540,
+    stock: 48,
+    etiquetas: [
+      'laptop',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2262'),
+    sku: 'P030',
+    nombre: 'Adaptador USB WiFi',
+    categoria: 'Accesorios',
+    precio: 480,
+    stock: 80,
+    etiquetas: [
+      'usb',
+      'redes'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2266'),
+    sku: 'P034',
+    nombre: 'Mouse Ergonomico',
+    categoria: 'Accesorios',
+    precio: 720,
+    stock: 56,
+    etiquetas: [
+      'mouse',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226a'),
+    sku: 'P038',
+    nombre: 'Teclado Compacto',
+    categoria: 'Accesorios',
+    precio: 680,
+    stock: 62,
+    etiquetas: [
+      'teclado',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226e'),
+    sku: 'P042',
+    nombre: 'Cable USB-C',
+    categoria: 'Accesorios',
+    precio: 220,
+    stock: 130,
+    etiquetas: [
+      'usb',
+      'cable'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2271'),
+    sku: 'P045',
+    nombre: 'Audifonos Deportivos',
+    categoria: 'Audio',
+    precio: 980,
+    stock: 36,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2272'),
+    sku: 'P046',
+    nombre: 'Soporte Monitor',
+    categoria: 'Accesorios',
+    precio: 850,
+    stock: 37,
+    etiquetas: [
+      'monitor',
+      'ergonomia'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2276'),
+    sku: 'P050',
+    nombre: 'Mochila para Laptop',
+    categoria: 'Accesorios',
+    precio: 1050,
+    stock: 44,
+    etiquetas: [
+      'laptop',
+      'movilidad'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8c1eb9f1686677db8ec2'),
+    sku: 'P002',
+    nombre: 'Mouse inalambrico',
+    categoria: 'Accesorios',
+    precio: 450,
+    stock: 90,
+    color: 'negro',
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec6'),
+    sku: 'P006',
+    nombre: 'Webcam HD',
+    categoria: 'Accesorios',
+    precio: 980,
+    stock: 50,
+    etiquetas: [
+      'video',
+      'usb'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8ddcb9f1686677db8ec8'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8dfeb9f1686677db8ec9'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8f30cce633bd1981c020'),
+    sku: 'P008',
+    nombre: 'Bocina Bluetooth',
+    categoria: 'Audio',
+    precio: 890,
+    stock: 25,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  }
+]
+
+// 5.4 Buscar productos que contengan la etiqueta "gaming" y tengan stock mayor a 10
+db.productos.find({
+    etiquetas: "gaming",
+    stock: { $gt: 10 }
+})
+[
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a98904be09bcf09698f2249'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1550,
+    stock: 45,
+    etiquetas: [
+      'mecanico',
+      'gaming',
+      'recomendado'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2251'),
+    sku: 'P013',
+    nombre: 'Mouse Gamer',
+    categoria: 'Accesorios',
+    precio: 780,
+    stock: 55,
+    etiquetas: [
+      'mouse',
+      'gaming'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f225c'),
+    sku: 'P024',
+    nombre: 'Monitor 32',
+    categoria: 'Computo',
+    precio: 7800,
+    stock: 12,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3840x2160',
+      hz: 60
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226c'),
+    sku: 'P040',
+    nombre: 'Monitor Curvo 27',
+    categoria: 'Computo',
+    precio: 7100,
+    stock: 14,
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '3440x1440',
+      hz: 165
+    }
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6abd8d1eb9f1686677db8ec5'),
+    sku: 'P005',
+    nombre: 'Teclado mecanico',
+    categoria: 'Accesorios',
+    precio: 1600,
+    stock: 37,
+    etiquetas: [
+      'mecanico',
+      'gaming'
+    ],
+    activo: true
+  }
+]
+
+// 5.5 Buscar productos de las categorias "Audio" o "Computo", con precio mayor a $1,000 y stock mayor a 15
+db.productos.find({
+    categoria: { $in: ["Audio", "Computo"] },
+    precio: { $gt: 1000 },
+    stock: { $gt: 15 }
+})
+[
+  {
+    _id: ObjectId('6a988ff8e09bcf09698f2245'),
+    sku: 'P001',
+    nombre: 'Laptop Pro',
+    categoria: 'Computo',
+    precio: 17990,
+    stock: 17,
+    etiquetas: [
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989018e09bcf09698f2247'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989022e09bcf09698f2248'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'oferta',
+      'catalogo'
+    ]
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2250'),
+    sku: 'P012',
+    nombre: 'Laptop Basica',
+    categoria: 'Computo',
+    precio: 12500,
+    stock: 20,
+    etiquetas: [
+      'laptop',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '512GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2253'),
+    sku: 'P015',
+    nombre: 'Audifonos Gamer',
+    categoria: 'Audio',
+    precio: 1750,
+    stock: 28,
+    etiquetas: [
+      'audio',
+      'gaming',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2254'),
+    sku: 'P016',
+    nombre: 'Monitor 24',
+    categoria: 'Computo',
+    precio: 3900,
+    stock: 16,
+    etiquetas: [
+      'monitor',
+      'oficina',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      resolucion: '1920x1080',
+      hz: 75
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2261'),
+    sku: 'P029',
+    nombre: 'Microfono Condensador',
+    categoria: 'Audio',
+    precio: 2100,
+    stock: 18,
+    etiquetas: [
+      'audio',
+      'estudio',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2264'),
+    sku: 'P032',
+    nombre: 'Chromebook 14',
+    categoria: 'Computo',
+    precio: 6900,
+    stock: 17,
+    etiquetas: [
+      'laptop',
+      'movilidad',
+      'catalogo'
+    ],
+    activo: true,
+    especificaciones: {
+      ram: '8GB',
+      almacenamiento: '128GB'
+    }
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f2269'),
+    sku: 'P037',
+    nombre: 'Audifonos Diadema',
+    categoria: 'Audio',
+    precio: 1100,
+    stock: 31,
+    etiquetas: [
+      'audio',
+      'bluetooth',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6a989084e09bcf09698f226d'),
+    sku: 'P041',
+    nombre: 'Bocina Inteligente',
+    categoria: 'Audio',
+    precio: 1450,
+    stock: 21,
+    etiquetas: [
+      'audio',
+      'wifi',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cadb9f1686677db8ec3'),
+    sku: 'P003',
+    nombre: 'Audifonos BT',
+    categoria: 'Audio',
+    precio: 1250,
+    stock: 35,
+    bluetooth: true,
+    etiquetas: [
+      'audio',
+      'movilidad',
+      'promocion'
+    ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6abd8cd7b9f1686677db8ec4'),
+    sku: 'P004',
+    nombre: 'Monitor 27',
+    categoria: 'Computo',
+    precio: 6200,
+    stock: 18,
+    especificaciones: {
+      resolucion: '2560x1440',
+      hz: 144
+    },
+    etiquetas: [
+      'monitor',
+      'gaming',
+      'catalogo'
+    ]
+  }
+]
